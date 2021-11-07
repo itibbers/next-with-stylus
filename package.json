@@ -2,10 +2,15 @@
   "name": "next-with-stylus",
   "version": "0.0.1-beta.0",
   "description": "Next.js + Stylus support",
-  "main": "index.js",
+  "keywords": [
+    "nextjs",
+    "next-plugin",
+    "stylus"
+  ],
   "repository": "https://github.com/itibbers/next-with-stylus.git",
-  "author": "itibbers",
   "license": "MIT",
+  "author": "itibbers",
+  "main": "index.js",
   "files": [
     "/index.js",
     "/dist"
@@ -13,6 +18,9 @@
   "scripts": {
     "build": "rimraf dist && babel src -d dist",
     "prepare": "npm run build"
+  },
+  "dependencies": {
+    "clone-deep": "^4.0.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.15.7",
@@ -22,12 +30,9 @@
     "prettier": "^2.4.1",
     "rimraf": "^3.0.2"
   },
-  "dependencies": {
-    "clone-deep": "^4.0.1"
-  },
   "peerDependencies": {
+    "next": ">= 11.0.1",
     "stylus": "*",
-    "stylus-loader": "*",
-    "next": ">= 11.0.1"
+    "stylus-loader": "*"
   }
 }

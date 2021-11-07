@@ -44,10 +44,10 @@ function withStylus({ stylusLoaderOptions = {}, ...nextConfig }) {
         if (rule.use?.loader === 'error-loader') {
           rule.test = addStylusToRuleTest(rule.test)
         } else if (rule.use?.loader?.includes('file-loader')) {
-          // url() inside .stylus files - next <= 11
+          // url() inside .styl files - next <= 11
           rule.issuer = addStylusToRuleTest(rule.issuer)
         } else if (rule.type === 'asset/resource') {
-          // url() inside .stylus files - next >= 12
+          // url() inside .styl files - next >= 12
           rule.issuer = addStylusToRuleTest(rule.issuer)
         } else if (rule.use?.includes?.('ignore-loader')) {
           rule.test = addStylusToRuleTest(rule.test)
