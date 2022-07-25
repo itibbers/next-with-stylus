@@ -26,9 +26,19 @@ function withStylus({ stylusLoaderOptions = {}, ...nextConfig }) {
       // global sass rule (does not exist in server builds)
       let sassGlobalRule
 
-      const cssRule = config.module.rules.find((rule) =>
-        rule.oneOf?.find((r) => r?.options?.__next_css_remove)
-      )
+      const isNextSpecialCSSRule = (rule) =>
+        // next >= 12.0.7
+        rule[Symbol.for('__next_css_remove')] ||
+        // next < 12.0.7
+        rule.options?.__next_css_remove
+
+      const cssRule = config.module.rules.find((rule) => rule.oneOf?.find(isNextSpecialCSSRule))
+
+      if (!cssRule) {
+        throw new Error(
+          'Could not find next.js css rule. Please ensure you are using a supported version of next.js'
+        )
+      }
 
       const addStylusToRuleTest = (test) => {
         if (Array.isArray(test)) {
